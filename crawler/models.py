@@ -8,5 +8,14 @@ class AiData(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=30)
     date = models.DateTimeField()
-    text = models.TextField()
+    link = models.URLField()
+
+
+class ComData(models.Model):
+
+    """Com Data Definition"""
+
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=30)
+    date = models.DateTimeField()
     link = models.URLField()

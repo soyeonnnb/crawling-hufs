@@ -11,6 +11,18 @@ class AiCrawlerAdmin(admin.ModelAdmin):
         "title",
         "author",
         "date",
-        "text",
+        "link",
+    )
+
+
+@admin.register(models.ComData)
+class ComCrawlerAdmin(admin.ModelAdmin):
+
+    """ComCrawler Admin Definition"""
+
+    list_display = (
+        "title",
+        "author",
+        "date",
         "link",
     )
