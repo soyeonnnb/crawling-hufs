@@ -8,12 +8,13 @@ class AiNoticeAdmin(admin.ModelAdmin):
     """AiNotice Admin Definition"""
 
     list_display = (
+        "number",
         "title",
         "author",
         "date",
         "link",
     )
-    ordering = ("-date",)
+    ordering = ("-number",)
 
 
 @admin.register(models.ComNotice)
@@ -22,9 +23,10 @@ class ComNoticeAdmin(admin.ModelAdmin):
     """ComNotice Admin Definition"""
 
     list_display = (
+        "number",
         "title",
         "author",
         "date",
         "link",
     )
-    ordering = ("-date",)
+    ordering = ("-number",)
