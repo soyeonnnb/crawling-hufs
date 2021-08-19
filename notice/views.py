@@ -2,12 +2,12 @@ from django.shortcuts import render
 
 
 def home(request):
-    return render(request, "home.html")
+    return render(request, "notice/home.html")
 
 
 def ai(request):
-    return render(request, "ai.html")
+    return render(request, "notice/ai.html")
 
 
 def com(request):
-    return render(request, "com.html")
+    return render(request, "notice/com.html")

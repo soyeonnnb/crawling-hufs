@@ -1,0 +1,13 @@
+:root {
+  --dark-blue: rgb(0, 43, 83);
+  --beige: rgb(252, 245, 239);
+  --brown: rgb(144, 113, 93);
+}
+
+.hufs-color {
+  background-color: var(--dark-blue);
+}
+
+.font-white {
+  color: white;
+}

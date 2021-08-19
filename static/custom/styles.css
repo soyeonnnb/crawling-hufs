@@ -1,0 +1,20 @@
+/* 폰트 IBM Plex Sans KR체*/
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200;300;400;500;600;700&display=swap");
+
+/* 리셋 */
+@import "reset.css";
+
+/* BootStrap */
+@import "../css/bootstrap.css";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+
+/* 초기설정 */
+@import "variables.css";
+
+body {
+  font-family: "IBM Plex Sans KR", sans-serif;
+  background-color: rgb(243, 247, 250);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

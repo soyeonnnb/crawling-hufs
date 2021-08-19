@@ -1,0 +1,78 @@
+{% load static %}
+
+<header class="d-flex justify-content-around align-middle" style="width:90%;">
+    <!-- Page navigator -->
+    <nav class="nav navbar navbar-expand-lg navbar-light bg-light" style="height:100px;">
+        <!-- 로고 -->
+        <a class="navbar-brand" href="{% url 'core:home' %}">
+            한국외국어대학교
+        </a>
+
+
+
+        <!-- 주요 링크 -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item mx-2">
+                    <a class="nav-link active" aria-current="page" href="{% url 'core:home' %}">
+                        홈페이지
+                    </a>
+                </li>
+                <div class="btn-group mx-2">
+                    <a class="nav-link active" aria-current="page" href="{% url 'notice:home' %}">
+                        공지사항
+                    </a>
+                    <a class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'notice:ai' %}">AI융합 전공</a></li>
+                        <li><a class="dropdown-item" href="{% url 'notice:com' %}">컴퓨터공학부</a></li>
+                    </ul>
+                </div>
+                <li class="nav-item mx-2">
+                    <a class="nav-link active" aria-current="page" href="{% url 'checklist:home' %}">전공이수
+                        체크리스트
+                    </a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link active" aria-current="page" href="{% url 'qanda:home' %}">
+                        Q & A 게시판
+                    </a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link active" aria-current="page" href="{% url 'free:home' %}">
+                        자유게시판
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <!-- Search Bar -->
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        </form>
+
+
+        <!-- User -->
+        <div class="d-flex"">
+            {% if user.is_authenticated %}
+            <button class=" btn btn-outline-primary rounded-circle mx-3" style="width: 35px; height: 35px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                class="bi bi-bell position-absolute translate-middle" viewBox="0 0 16 16" style="margin-left:1px;">
+                <path
+                    d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+            </svg>
+            </button>
+            <a class="btn btn-primary" role="button" href="{% url 'users:home' %}">MyPage</a>
+            {% else %}
+            <a class="btn btn-primary" role="button" href="{% url 'users:login' %}">Login</a>
+            {% endif %}
+        </div>
+
+    </nav>
+</header>
