@@ -2,23 +2,10 @@ from django.contrib import admin
 from . import models
 
 
-@admin.register(models.AiData)
-class AiCrawlerAdmin(admin.ModelAdmin):
+@admin.register(models.AiNotice)
+class AiNoticeAdmin(admin.ModelAdmin):
 
-    """AiCrawler Admin Definition"""
-
-    list_display = (
-        "title",
-        "author",
-        "date",
-        "link",
-    )
-
-
-@admin.register(models.ComData)
-class ComCrawlerAdmin(admin.ModelAdmin):
-
-    """ComCrawler Admin Definition"""
+    """AiNotice Admin Definition"""
 
     list_display = (
         "title",
@@ -26,3 +13,18 @@ class ComCrawlerAdmin(admin.ModelAdmin):
         "date",
         "link",
     )
+    ordering = ("-date",)
+
+
+@admin.register(models.ComNotice)
+class ComNoticeAdmin(admin.ModelAdmin):
+
+    """ComNotice Admin Definition"""
+
+    list_display = (
+        "title",
+        "author",
+        "date",
+        "link",
+    )
+    ordering = ("-date",)

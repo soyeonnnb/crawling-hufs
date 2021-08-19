@@ -1,21 +1,27 @@
 from django.db import models
 
 
-class AiData(models.Model):
+class AiNotice(models.Model):
 
-    """Ai Data Definition"""
+    """Ai Notice Definition"""
+
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=30)
+    date = models.DateTimeField()
+    link = models.URLField()
+
+    class Meta:
+        verbose_name = "Ai Notice"
+
+
+class ComNotice(models.Model):
+
+    """Com Notice Definition"""
 
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=30)
     date = models.DateTimeField()
     link = models.URLField()
 
-
-class ComData(models.Model):
-
-    """Com Data Definition"""
-
-    title = models.CharField(max_length=100)
-    author = models.CharField(max_length=30)
-    date = models.DateTimeField()
-    link = models.URLField()
+    class Meta:
+        verbose_name = "Computer Notice"

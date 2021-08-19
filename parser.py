@@ -8,7 +8,7 @@ import django
 
 django.setup()
 
-from crawler.models import AiData, ComData
+from notice.models import AiNotice, ComNotice
 
 
 def extract_data(data):
@@ -34,7 +34,7 @@ def extract_datas(url, last_page):
     datas = []
     for page in range(last_page):
         print(f"Scrapping: {page+1} / {last_page}")
-        url = f"{url}&page={page+1}&command=list"
+        url = f"{url}&page={page+1}"
         result = requests.get(url)
         soup = BeautifulSoup(result.text, "html.parser")
         datas_list = (
@@ -49,16 +49,17 @@ def extract_datas(url, last_page):
 def get_last_page(url):
     result = requests.get(url)
     soup = BeautifulSoup(result.text, "html.parser")
-    pages = soup.find("div", {"class": "paging"}).find_all("a")
-    last_page = len(pages)
-    return last_page
+    pages = soup.find("div", {"class": "paging"}).find_all("a")[-1]["href"]
+    print(pages)
+    return pages
 
 
 def get_datas(id, board_id):
-    url = f"http://builder.hufs.ac.kr/user/indexSub.action?framePath=unknownboard&siteId={id}&dum=dum&boardId={board_id}"
+    url = f"https://builder.hufs.ac.kr/user/indexSub.action?framePath=unknownboard&siteId={id}&dum=dum&boardId={board_id}"
     last_page = get_last_page(url)
-    datas = extract_datas(url, last_page)
-    return datas
+    print(id, last_page)
+    # datas = extract_datas(url, last_page)
+    # return datas
 
 
 AI_ID = "ai"
@@ -68,9 +69,11 @@ COM_BOARD_ID = 43626718
 
 
 if __name__ == "__main__":
+    get_datas(AI_ID, AI_BOARD_ID)
+    get_datas(COM_ID, COM_BOARD_ID)
     ai_data_dict = get_datas(AI_ID, AI_BOARD_ID)
     for data in ai_data_dict:
-        AiData(
+        AiNotice(
             title=data["title"],
             author=data["author"],
             date=data["date"],
@@ -78,7 +81,7 @@ if __name__ == "__main__":
         ).save()
     com_data_dict = get_datas(COM_ID, COM_BOARD_ID)
     for data in com_data_dict:
-        ComData(
+        ComNotice(
             title=data["title"],
             author=data["author"],
             date=data["date"],
