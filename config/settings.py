@@ -39,7 +39,14 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-PROJECT_APPS = ["crawler.apps.CrawlerConfig"]
+PROJECT_APPS = [
+    "checklist.apps.ChecklistConfig",
+    "core.apps.CoreConfig",
+    "free.apps.FreeConfig",
+    "notice.apps.NoticeConfig",
+    "q_and_a.apps.QAndAConfig",
+    "users.apps.UsersConfig",
+]
 
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS

@@ -9,7 +9,7 @@ import django
 
 django.setup()
 
-from crawler.models import AiNotice, ComNotice
+from notice.models import AiNotice, ComNotice
 
 
 def extract_data(data):
