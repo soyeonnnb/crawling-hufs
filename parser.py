@@ -8,7 +8,7 @@ import django
 
 django.setup()
 
-from notice.models import AiNotice, ComNotice
+from crawler.models import AiNotice, ComNotice
 
 
 def extract_data(data):
@@ -71,7 +71,7 @@ COM_BOARD_ID = 43626718
 if __name__ == "__main__":
     get_datas(AI_ID, AI_BOARD_ID)
     get_datas(COM_ID, COM_BOARD_ID)
-    ai_data_dict = get_datas(AI_ID, AI_BOARD_ID)
+""" ai_data_dict = get_datas(AI_ID, AI_BOARD_ID)
     for data in ai_data_dict:
         AiNotice(
             title=data["title"],
@@ -87,3 +87,4 @@ if __name__ == "__main__":
             date=data["date"],
             link=data["link"],
         ).save()
+"""
