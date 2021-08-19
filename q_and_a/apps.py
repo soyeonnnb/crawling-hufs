@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class CrawlerConfig(AppConfig):
+class QAndAConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'crawler'
+    name = 'q_and_a'
