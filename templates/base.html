@@ -12,15 +12,13 @@
 
 <body>
     {% include "partials/header.html" %}
-    <main class="d-flex justify-content-around align-middle flex-column" style="width:90%">
+    <main class="d-flex justify-content-around align-middle flex-column col-11">
         {% block content %}{% endblock %}
     </main>
-    <footer>
-        {% include "partials/footer.html" %}
-    </footer>
+    {% include "partials/footer.html" %}
     <!-- BootStrap -->
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 </body>
