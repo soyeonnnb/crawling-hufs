@@ -114,11 +114,3 @@ if __name__ == "__main__":
     print("COM")
     com_data_dict = get_datas(COM_ID, COM_BOARD_ID)
     save_data(com_data_dict, ComNotice)
-"""
-https://builder.hufs.ac.kr/user/boardList.action?command=view&page=1&boardId=150797968&boardSeq=156497870
-https://builder.hufs.ac.kr/user/indexSub.action?framePath=unknownboard&siteId=ai&dum=dum&boardId=150797968&page=1&command=view&boardSeq=156497870
-https://builder.hufs.ac.kr/user/indexSub.action?framePath=unknownboard&siteId=ces&dum=dum&boardId=43626718&page=1&command=view&boardSeq=156958067
-
-    url = f"https://builder.hufs.ac.kr/user/indexSub.action?framePath=unknownboard&siteId={id}&dum=dum&boardId={board_id}"
-
-    """
