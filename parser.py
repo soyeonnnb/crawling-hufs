@@ -12,6 +12,13 @@ django.setup()
 from notice.models import AiNotice, ComNotice
 
 
+def get_id(url):
+    result = urllib.parse.urlparse(url)
+    query = urllib.parse.parse_qs(result.query)
+    boardSeq = query.get("boardSeq")[0]
+    return int(boardSeq)
+
+
 def extract_data(data):
     try:
         number = data.find("td", {"class": "no"}).find("span").get_text().strip()
@@ -20,6 +27,7 @@ def extract_data(data):
         author = data.find_all("td")[2].get_text().strip()
         link = data.find("td", {"class": "title"}).find("a")["href"]
         link = f"https://builder.hufs.ac.kr/user/{link}"
+        specific_id = get_id(link)
         date = data.find_all("td")[3].get_text().strip()
         data_dic = {
             "title": title,
@@ -27,6 +35,7 @@ def extract_data(data):
             "number": number,
             "link": link,
             "date": date,
+            "specific_id": specific_id,
         }
     except:
         return None
@@ -73,24 +82,35 @@ COM_ID = "ces"
 COM_BOARD_ID = 43626718
 
 
+def save_data(data_dic, model):
+    last_data = model.objects.last()
+    if last_data is None:
+        last_data_id = 0
+    else:
+        last_data_id = int(getattr(last_data, "specific_id"))
+
+    datas_to_insert_db = []
+    for data in data_dic:
+        if data["specific_id"] == last_data_id:
+            break
+        datas_to_insert_db.append(data)
+    datas_to_insert_db.reverse()
+    for data in datas_to_insert_db:
+        model(
+            title=data["title"],
+            number=data["number"],
+            author=data["author"],
+            date=data["date"],
+            link=data["link"],
+            specific_id=data["specific_id"],
+        ).save()
+
+
 if __name__ == "__main__":
     print("AI")
     ai_data_dict = get_datas(AI_ID, AI_BOARD_ID)
-    for data in ai_data_dict:
-        AiNotice(
-            title=data["title"],
-            number=data["number"],
-            author=data["author"],
-            date=data["date"],
-            link=data["link"],
-        ).save()
+    save_data(ai_data_dict, AiNotice)
+
     print("COM")
     com_data_dict = get_datas(COM_ID, COM_BOARD_ID)
-    for data in com_data_dict:
-        ComNotice(
-            title=data["title"],
-            number=data["number"],
-            author=data["author"],
-            date=data["date"],
-            link=data["link"],
-        ).save()
+    save_data(com_data_dict, ComNotice)

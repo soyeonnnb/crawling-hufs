@@ -46,7 +46,6 @@ PROJECT_APPS = [
     "notice.apps.NoticeConfig",
     "q_and_a.apps.QAndAConfig",
     "users.apps.UsersConfig",
-    "testapps.apps.TestappsConfig"
 ]
 
 

@@ -7,13 +7,7 @@ class AiNoticeAdmin(admin.ModelAdmin):
 
     """AiNotice Admin Definition"""
 
-    list_display = (
-        "number",
-        "title",
-        "author",
-        "date",
-        "link",
-    )
+    list_display = ("number", "title", "author", "date", "link", "specific_id")
     ordering = ("-number",)
 
 
@@ -22,11 +16,5 @@ class ComNoticeAdmin(admin.ModelAdmin):
 
     """ComNotice Admin Definition"""
 
-    list_display = (
-        "number",
-        "title",
-        "author",
-        "date",
-        "link",
-    )
+    list_display = ("number", "title", "author", "date", "link", "specific_id")
     ordering = ("-number",)

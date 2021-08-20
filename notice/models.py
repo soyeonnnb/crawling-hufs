@@ -8,8 +8,9 @@ class AiNotice(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=30)
     number = models.IntegerField()
-    date = models.DateTimeField()
+    date = models.DateField()
     link = models.URLField()
+    specific_id = models.IntegerField()
 
     class Meta:
         verbose_name = "Ai Notice"
@@ -22,8 +23,9 @@ class ComNotice(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=30)
     number = models.IntegerField()
-    date = models.DateTimeField()
+    date = models.DateField()
     link = models.URLField()
+    specific_id = models.IntegerField()
 
     class Meta:
         verbose_name = "Computer Notice"
