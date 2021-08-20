@@ -2,35 +2,80 @@
 {% load static %}
 {% block page_name %}공지사항{% endblock page_name %}
 {% block content %}
-<div class="container-lg d-flex justify-content-around"">
-    <div class=" card shadow mb-4">
-    <a href="{% url 'notice:ai' %}">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">AI융합 전공 공지사항</h6>
-        </div>
-    </a>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+<div class="container-fluid d-flex flex-column justify-content-between align-center" style=" width:1400px;">
+    <div class="mb-4">
+        <h2>최신 공지사항</h2>
+    </div>
+    <div class="d-flex justify-content-between">
+        <div>
+            <table class="table" style="height:500px;">
+                <div class="d-flex justify-content-between align-center">
+                    <div>
+                        <h4>AI융합 전공</h4>
+                    </div>
+                    <div>
+                        <a href="{% url 'notice:ai' %}">
+                            <p class="text-end">더보기</p>
+                        </a>
+                    </div>
+                </div>
+
+
+
                 <thead>
-                    <tr>
-                        <th>글 제목</th>
-                        <th width='160px'>작성자</th>
-                        <th width='160px'>작성 날짜</th>
+                    <tr class="text-center">
+                        <th style="width:60px" scope="col">글번호</th>
+                        <th style="width:500px" scope="col">제목</th>
+                        <th style="width:60px" scope="col">작성일</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for post in ai_posts %}
                     <tr>
-                        <td><a href="{{post.link}}">{{post.title}}</a></td>
-                        <td>{{post.number}}</td>
-                        <td>{{post.date.date}}</td>
+                        <th class="text-center" scope="row">{{post.number}}</th>
+                        <td><a class="text-decoration-none text-black" href="{{post.link}}">{{post.title}}</a></td>
+                        <td>{{post.date.year}}.{{post.date.month}}.{{post.date.day}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+
+        </div>
+        <div>
+            <table class="table" style="height:500px;">
+                <div class="d-flex justify-content-between align-center">
+                    <div>
+                        <h4>컴퓨터 공학부</h4>
+                    </div>
+                    <div>
+                        <a href="{% url 'notice:com' %}">
+                            <p class="text-end">더보기</p>
+                        </a>
+                    </div>
+                </div>
+
+
+
+                <thead>
+                    <tr class="text-center">
+                        <th style="width:60px" scope="col">글번호</th>
+                        <th style="width:500px" scope="col">제목</th>
+                        <th style="width:60px" scope="col">작성일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in com_posts %}
+                    <tr>
+                        <th class="text-center" scope="row">{{post.number}}</th>
+                        <td><a class="text-decoration-none text-black" href="{{post.link}}">{{post.title}}</a></td>
+                        <td>{{post.date.year}}.{{post.date.month}}.{{post.date.day}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
         </div>
     </div>
-</div>
+
 </div>
 {% endblock %}

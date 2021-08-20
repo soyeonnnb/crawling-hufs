@@ -6,8 +6,8 @@ from . import models
 
 def home(request):
 
-    ai_posts = models.AiNotice.objects.filter().order_by("number")[:10]
-    com_posts = models.ComNotice.objects.filter().order_by("number")[:10]
+    ai_posts = models.AiNotice.objects.filter().order_by("-number")[:10]
+    com_posts = models.ComNotice.objects.filter().order_by("-number")[:10]
 
     return render(
         request, "notice/home2.html", {"ai_posts": ai_posts, "com_posts": com_posts}
@@ -15,19 +15,16 @@ def home(request):
 
 
 def ai(request):
-    return render(request, "notice/ai.html")
-
-
-class AiView(ListView):
-
-    """AiView Definition"""
-
-    model = models.AiNotice
-    paginate_py = 15
-    paginate_orphans = 3
-    ordering = "date"
-    context_object_name = "ai"
+    posts = models.AiNotice.objects.filter().order_by("-date")
+    paginator = Paginator(posts, 20)
+    page_num = request.GET.get("page")
+    posts = paginator.get_page(page_num)
+    return render(request, "notice/detail.html", {"posts": posts, "name": "AI융합 전공"})
 
 
 def com(request):
-    return render(request, "notice/com.html")
+    posts = models.ComNotice.objects.filter().order_by("-date")
+    paginator = Paginator(posts, 20)
+    page_num = request.GET.get("page")
+    posts = paginator.get_page(page_num)
+    return render(request, "notice/detail.html", {"posts": posts, "name": "컴퓨터 공학부"})

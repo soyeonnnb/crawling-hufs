@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}style="width:40%; height:90%; background-color:whitesmoke; padding:30px 0px;"
+{% block page_name %}{{name}} 공지사항{% endblock page_name %}
+{% block content %}
+<div class="container d-flex ">
+    <ul class="list-group me-5" style="width:400px;">
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth item</li>
+        <li class="list-group-item">And a fifth one</li>
+    </ul>
+    <div class="container-fluid d-flex flex-column justify-content-between align-center" style=" width:1500px;">
+        <div class="mb-4">
+            <h2>{{name}} 공지사항</h2>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr class="text-center">
+                            <th style="width:60px" scope="col">글번호</th>
+                            <th style="width:700px" scope="col">제목</th>
+                            <th style="width:60px" scope="col">작성일</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in posts %}
+                        <tr>
+                            <th class="text-center" scope="row">{{post.number}}</th>
+                            <td><a class="text-decoration-none text-black" href="{{post.link}}">{{post.title}}</a></td>
+                            <td>{{post.date.year}}.{{post.date.month}}.{{post.date.day}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- Paginator -->
+        <div>
+            <ul class="pagination">
+                <!-- 이전 페이지 -->
+                {% if posts.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{posts.previous_page_number}}" class="page-link">Previous</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">Previous</a>
+                </li>
+                {% endif %}
+
+
+                <!-- 페이지 링크들 -->
+                {% for page in posts.paginator.page_range %}
+                {% if posts.number == page %}
+                <li class="page-item active">
+                    <a href="?page={{page}}" class="page-link">{{page}}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a href="?page={{page}}" class="page-link">{{page}}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+
+                <!-- 다음 페이지 -->
+                {% if posts.has_next %}
+                <li class="page-item">
+                    <a href="?page={{posts.next_page_number}}" class="page-link">Next</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
