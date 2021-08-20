@@ -19,15 +19,15 @@ def get_id(url):
     return int(boardSeq)
 
 
-def extract_data(data):
+def extract_data(data, url):
     try:
         number = data.find("td", {"class": "no"}).find("span").get_text().strip()
         number = int(number)
         title = data.find("td", {"class": "title"}).get_text().strip()
         author = data.find_all("td")[2].get_text().strip()
-        link = data.find("td", {"class": "title"}).find("a")["href"]
-        link = f"https://builder.hufs.ac.kr/user/{link}"
-        specific_id = get_id(link)
+        href = data.find("td", {"class": "title"}).find("a")["href"]
+        specific_id = get_id(href)
+        link = f"{url}&page=1&command=view&boardSeq={specific_id}"
         date = data.find_all("td")[3].get_text().strip()
         data_dic = {
             "title": title,
@@ -53,7 +53,7 @@ def extract_datas(url, last_page):
             soup.find("table", {"summary": "게시판리스트"}).find("tbody").find_all("tr")
         )
         for data in datas_list:
-            data_dic = extract_data(data)
+            data_dic = extract_data(data, url)
             if data_dic != None:
                 datas.append(data_dic)
     return datas
@@ -114,3 +114,11 @@ if __name__ == "__main__":
     print("COM")
     com_data_dict = get_datas(COM_ID, COM_BOARD_ID)
     save_data(com_data_dict, ComNotice)
+"""
+https://builder.hufs.ac.kr/user/boardList.action?command=view&page=1&boardId=150797968&boardSeq=156497870
+https://builder.hufs.ac.kr/user/indexSub.action?framePath=unknownboard&siteId=ai&dum=dum&boardId=150797968&page=1&command=view&boardSeq=156497870
+https://builder.hufs.ac.kr/user/indexSub.action?framePath=unknownboard&siteId=ces&dum=dum&boardId=43626718&page=1&command=view&boardSeq=156958067
+
+    url = f"https://builder.hufs.ac.kr/user/indexSub.action?framePath=unknownboard&siteId={id}&dum=dum&boardId={board_id}"
+
+    """

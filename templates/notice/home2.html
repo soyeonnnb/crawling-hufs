@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_name %}공지사항{% endblock page_name %}
+{% block content %}
+<div class="container-lg d-flex justify-content-around"">
+    <div class=" card shadow mb-4">
+    <a href="{% url 'notice:ai' %}">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">AI융합 전공 공지사항</h6>
+        </div>
+    </a>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>글 제목</th>
+                        <th width='160px'>작성자</th>
+                        <th width='160px'>작성 날짜</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in ai_posts %}
+                    <tr>
+                        <td><a href="{{post.link}}">{{post.title}}</a></td>
+                        <td>{{post.number}}</td>
+                        <td>{{post.date.date}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

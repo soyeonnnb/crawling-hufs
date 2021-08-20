@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% load static %}style="width:40%; height:90%; background-color:whitesmoke; padding:30px 0px;"
+{% load static %}
 {% block page_name %}공지사항{% endblock page_name %}
 {% block content %}
-<div class="container-lg d-flex justify-content-around" style="height:65vh; margin-top:80px;">
-    <div
-        class="col-5 bg-white border border-primary border-3 rounded-3 d-flex justify-content-center align-items-center">
+<div class="container-fluid d-flex justify-content-between" style=" width:1000px;">
+    <div class="col-5 bg-white border border-primary border-3 d-flex justify-content-center align-items-center"
+        style="width:450px;height:450px;border-radius:20px;">
         <a href="{% url 'notice:ai' %}" class="text-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="70%" height="70%" fill="currentColor" class="bi bi-cpu"
                 viewBox="0 0 16 16">
@@ -14,8 +14,8 @@
             <h2 class="mt-5">AI융합 전공</h2>
         </a>
     </div>
-    <div
-        class="col-5 bg-white border border-primary border-3 rounded-3 d-flex justify-content-center align-items-center">
+    <div class="col-5 bg-white border border-primary border-3 d-flex justify-content-center align-items-center"
+        style="width:450px;height:450px;border-radius:20px;">
         <a href="{% url 'notice:com' %}" class="text-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="70%" height="70%" fill="currentColor" class="bi bi-laptop"
                 viewBox="0 0 16 16">
