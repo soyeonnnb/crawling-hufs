@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_name %}글쓰기{% endblock page_name %}
+{% block content %}
+<form action="" method="POST" class="container d-flex ">
+
+    <div class="container-fluid d-flex flex-column justify-content-between align-center" style=" width:1500px;">
+
+        <div class="d-flex justify-content-between align-center flex-column" style="width:100%">
+
+            <div class="input-group dropdown mb-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">질문 유형을 선택해주세요</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+            <textarea placeholder="내용을 입력해주세요" style="height:500px;"></textarea>
+            <div>
+                <div class="input-group">
+                    <input type="file" class="form-control" aria-label="Upload">
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="position-relative mt-5">
+            <button type="button" class="btn btn-primary position-absolute top-50 end-0 translate-middle-y"
+                style="width:140px;">Upload</button>
+
+        </div>
+    </div>
+</form>
+{% endblock %}

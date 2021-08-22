@@ -1,5 +1,8 @@
 :root {
-  --dark-blue: rgb(0, 43, 83);
-  --beige: rgb(252, 245, 239);
-  --brown: rgb(144, 113, 93);
+  --hufs-blue: rgb(0, 43, 83);
+  --hufs-beige: rgb(252, 245, 239);
+  --hufs-brown: rgb(144, 113, 93);
+}
+.bg-hufs {
+  background-color: rgb(0, 43, 83);
 }

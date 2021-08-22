@@ -10,7 +10,7 @@ def home(request):
     com_posts = models.ComNotice.objects.filter().order_by("-number")[:10]
 
     return render(
-        request, "notice/home2.html", {"ai_posts": ai_posts, "com_posts": com_posts}
+        request, "notice/home.html", {"ai_posts": ai_posts, "com_posts": com_posts}
     )
 
 
