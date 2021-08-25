@@ -45,6 +45,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField("스태프 권한", default=False)
     is_active = models.BooleanField(_("active"), default=False)
     date_joined = models.DateTimeField("가입일", default=timezone.now)
+    subjects = models.ManyToManyField(
+        "Subjects", related_name="subjects", null=True, blank=True
+    )
 
     objects = UserManager()
 
@@ -58,3 +61,38 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def email_user(self, subject, message, from_email=None, **kwargs):  # 이메일 발송 메소드
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+
+class Subjects(models.Model):
+
+    """Major Model"""
+
+    TRACK_LANGUAGE = "language & ai"
+    TRACK_SOFTWARE = "software & ai"
+    TRACK_BUSINESS = "business & ai"
+    TRACK_COMMON = "common"
+
+    TRACK_CHOICES = (
+        (TRACK_LANGUAGE, "Language & AI"),
+        (TRACK_SOFTWARE, "Software & AI"),
+        (TRACK_BUSINESS, "Business & AI"),
+        (TRACK_COMMON, "Common"),
+    )
+
+    SEMESTER_FIRST = "first semester"
+    SEMESTER_SECOND = "second semester"
+
+    SEMESTER_CHOICES = (
+        (SEMESTER_FIRST, "First"),
+        (SEMESTER_SECOND, "Second"),
+    )
+
+    name = models.CharField(max_length=30)
+    require = models.BooleanField()
+    year = models.IntegerField()
+    credit = models.IntegerField()
+    semester = models.CharField(choices=SEMESTER_CHOICES, max_length=6, blank=True)
+    track = models.CharField(choices=TRACK_CHOICES, max_length=20, blank=True)
+
+    def __str__(self):
+        return self.name

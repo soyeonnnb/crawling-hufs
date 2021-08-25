@@ -1,4 +1,20 @@
 from django.contrib import admin
-from .models import User
+from . import models
+
 # Register your models here.
-admin.site.register(User)
+admin.site.register(models.User)
+
+
+@admin.register(models.Subjects)
+class SubjectsAdmin(admin.ModelAdmin):
+
+    """Subjects Admin Definition"""
+
+    list_display = (
+        "name",
+        "require",
+        "year",
+        "credit",
+        "semester",
+        "track",
+    )
