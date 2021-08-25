@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
-from django.views.generic import ListView
 from . import models
 
 
