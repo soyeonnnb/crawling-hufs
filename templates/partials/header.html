@@ -17,7 +17,7 @@
                 <li><a href="{% url 'core:home' %}" class="nav-link px-2 link-secondary">홈페이지</a></li>
 
                 <li class="nav-item mx-2 col ">
-                    <a class="nav-link active" aria-current="page" href="{% url 'checklist:home' %}">
+                    <a class="nav-link active" aria-current="page" href="{% url 'subjects:search' %}">
                         전공이수체크
                     </a>
                 </li>
@@ -57,7 +57,7 @@
 
         <!-- User -->
 
-        {% if user.is_authenticated %}
+        {% if not user.is_authenticated %}
         <!-- Alarm -->
         <div class="d-flex">
             <div class="btn-group me-4 ms-3">

@@ -40,12 +40,12 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
-    "checklist.apps.ChecklistConfig",
     "core.apps.CoreConfig",
     "free.apps.FreeConfig",
     "notice.apps.NoticeConfig",
     "q_and_a.apps.QAndAConfig",
     "users.apps.UsersConfig",
+    "subjects.apps.SubjectsConfig",
 ]
 
 

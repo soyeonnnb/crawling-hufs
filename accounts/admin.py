@@ -1,20 +1,32 @@
 from django.contrib import admin
-from . import models
+from .models import User
 
 # Register your models here.
-admin.site.register(models.User)
+@admin.site.register(User)
+class UserAdmin(admin.ModelAdmin):
 
+    """User Admin Definition"""
 
-@admin.register(models.Subjects)
-class SubjectsAdmin(admin.ModelAdmin):
-
-    """Subjects Admin Definition"""
+    fieldsets = (
+        (
+            "Basic Info",
+            {
+                "fields": (
+                    "email",
+                    "nickname",
+                    "is_staff",
+                    "is_active",
+                )
+            },
+        ),
+        ("Times", {"fields": ("date_joined",)}),
+        ("Last Details", {"fields": ("subjects",)}),
+    )
 
     list_display = (
-        "name",
-        "require",
-        "year",
-        "credit",
-        "semester",
-        "track",
+        "email",
+        "nickname",
+        "is_staff",
+        "is_active",
     )
+    filter_horizontal = "subjects"
